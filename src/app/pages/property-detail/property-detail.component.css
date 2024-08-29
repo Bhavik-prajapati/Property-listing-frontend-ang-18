@@ -1,0 +1,21 @@
+.carousel-image {
+    height: 450px; /* Set the desired height */
+    object-fit: cover; /* This ensures the image covers the area without distortion */
+    object-position: center; /* Center the image within the container */
+  }
+  
+  .card-body {
+    padding: 15px;
+  }
+  
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5); 
+    border-radius: 50%;
+  }
+  
+  .carousel-control-prev-icon:hover,
+  .carousel-control-next-icon:hover {
+    background-color: rgba(0, 0, 0, 0.7); 
+  }
+  

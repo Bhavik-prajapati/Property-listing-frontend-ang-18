@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import { LayoutComponent } from './components/layout/layout.component';
-import { HomeComponent } from './components/home/home.component';
-import { AboutComponent } from './components/about/about.component';
-import { SignupComponent } from './components/signup/signup.component';
-import { PropertyDetailComponent } from './components/property-detail/property-detail.component';
+import { HomeComponent } from './pages/home/home.component';
+import { AboutComponent } from './pages/about/about.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import { PropertyDetailComponent } from './pages/property-detail/property-detail.component';
 
 export const routes: Routes = [
 
@@ -27,7 +27,7 @@ export const routes: Routes = [
         children:[
             {path:"home",component:HomeComponent},
             {path:"about",component:AboutComponent},
-            { path: 'property', component: PropertyDetailComponent },
+            // { path: 'property', component: PropertyDetailComponent },
             { path: 'property/:id', component: PropertyDetailComponent },
         ]
     }

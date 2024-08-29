@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { HomeService } from './home.service';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
-import { Property, PropertyCardComponent } from "../property-card/property-card.component";
-import { HeaderComponent } from "../header/header.component";
+import { Property, PropertyCardComponent } from "../../components/property-card/property-card.component";
+import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
   selector: 'app-home',

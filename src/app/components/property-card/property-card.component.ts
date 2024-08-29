@@ -27,8 +27,7 @@ export interface Property {
 })
 export class PropertyCardComponent {
   @Input() property!: Property;
-
- 
+   
   prevSlide(id: string) {
     const element = document.getElementById(`propertyCarousel${id}`);
     if (element) {
