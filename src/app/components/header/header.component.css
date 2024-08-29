@@ -1,0 +1,25 @@
+ul,li,a{
+    text-decoration: none;
+    list-style-type: none;
+}
+header{
+    padding: 5px 50px;
+    font-family: "Poppins", sans-serif !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+.mybricks h5{
+    /* font-family: "Poppins", sans-serif !important; */
+    font-weight: 900;
+    font-size: x-large;
+}
+ul.navlinks{
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+}
+ul.navlinks li{
+    padding: 0px 10px;
+}

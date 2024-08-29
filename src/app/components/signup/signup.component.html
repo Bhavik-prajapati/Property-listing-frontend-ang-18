@@ -1,0 +1,25 @@
+<div class="container" style="margin-top: 200px;">
+    <div class="card mx-auto" style="width: 30rem;min-height: 40vh;">
+        <div class="card-body">
+            <h5 class="card-title">Signup</h5>
+            
+            <input type="text" [(ngModel)]="userdata.name" class="form-control mb-2" name="name" placeholder="name">
+            <input type="email" [(ngModel)]="userdata.email" class="form-control mb-2" name="email" placeholder="email">
+            <input type="password" [(ngModel)]="userdata.password" class="form-control mb-2" name="password" placeholder="password">
+            <input type="number" [(ngModel)]="userdata.phone" class="form-control mb-2" name="phone" placeholder="phone no">
+            
+            <!-- Apply Bootstrap classes to the select element -->
+            <select class="form-select mb-2" name="userType" [(ngModel)]="userdata.userType">
+                <option value="Admin">Admin</option>
+                <option value="Agent">Agent</option>
+                <option value="Buyer">Buyer</option>
+            </select>
+            <button class="btn btn-primary text-center mx-auto w-100 mb-2" (click)="register()">Register</button>
+            <br>
+            <p class="text-center">
+            Already Registered ? <a class="text-decoration-none" href="/login">Login</a>
+             </p>
+        </div>
+    </div>
+    
+</div>

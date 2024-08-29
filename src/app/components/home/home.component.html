@@ -1,0 +1,8 @@
+<app-header></app-header>
+<div class="property-list container">
+  <div class="row">
+    <div class="col-md-3 mb-4" *ngFor="let property of properieslist">
+      <app-property-card [property]="property"></app-property-card>
+    </div>
+  </div>
+</div>
