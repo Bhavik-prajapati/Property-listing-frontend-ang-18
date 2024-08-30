@@ -14,6 +14,10 @@ declare var bootstrap: any;
 })
 export class PropertyDetailComponent {
 
+  goBack() {
+    window.history.back(); 
+  }
+
   constructor(private route: ActivatedRoute,private propertyservice:PropertyDetailService) { }
   property:any={};
   ngOnInit(): void {

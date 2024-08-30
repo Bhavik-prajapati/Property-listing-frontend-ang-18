@@ -2,13 +2,18 @@
     <div class="mybricks">
         <h5 class="text-white">MyBricks</h5>
     </div>
-    <ul class="navlinks">
+    <ul class="navlinks mt-3">
         @if (islogin) {
             <button  class="btn btn-light mt-2">
                 <li class="text-danger">
                     <a href="/signup">Login/Signup</a>
                 </li>
             </button>
+        } 
+        @else {
+            <li>
+                <a href="/postproperty" class="text-white">Post Property</a>
+            </li>
         }
         
         <!-- <li class="text-danger">About</li> -->

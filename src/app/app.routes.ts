@@ -5,6 +5,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AboutComponent } from './pages/about/about.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import { PropertyDetailComponent } from './pages/property-detail/property-detail.component';
+import { PostpropertyComponent } from './pages/postproperty/postproperty.component';
 
 export const routes: Routes = [
 
@@ -29,6 +30,7 @@ export const routes: Routes = [
             {path:"about",component:AboutComponent},
             // { path: 'property', component: PropertyDetailComponent },
             { path: 'property/:id', component: PropertyDetailComponent },
+            {path:'postproperty',component:PostpropertyComponent}
         ]
     }
 ];
