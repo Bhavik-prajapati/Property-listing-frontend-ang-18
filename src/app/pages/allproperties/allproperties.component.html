@@ -1,8 +1,11 @@
 <app-header></app-header>
 <div class="property-list container">
   <div class="row">
-    <div class="col-md-3 mb-4" *ngFor="let property of properieslist">
+    <div class="col-md-3 mb-4" *ngFor="let property of displayedProperties">
       <app-property-card [property]="property"></app-property-card>
     </div>
   </div>
+</div>
+<div class="container text-center" style="margin: auto;">
+  <button style="margin: auto;text-align: center;" class="btn btn-danger" *ngIf="propertiesToShow < properieslist.length" (click)="loadMore()">Load More</button>
 </div>

@@ -4,11 +4,12 @@ import { CommonModule, JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Property, PropertyCardComponent } from "../../components/property-card/property-card.component";
 import { HeaderComponent } from "../../components/header/header.component";
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [JsonPipe, PropertyCardComponent, CommonModule, HeaderComponent],
+  imports: [JsonPipe, PropertyCardComponent, CommonModule, HeaderComponent,FormsModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
@@ -16,7 +17,11 @@ export class HomeComponent {
 
   // properties: Property[] = [];
   properieslist:any;
+  city: string = '';
+  propertyType: string = '';
+  filteredProperties: any[] = [];
   router=inject(Router);
+  searchTerm:string='';
 
   constructor(private homeservice:HomeService){
     const token=localStorage.getItem("token");
@@ -28,13 +33,24 @@ export class HomeComponent {
   }
 
   getalldata(){
-    this.homeservice.getallproperties().subscribe((res)=>{
-      this.properieslist=res;
-      console.log(this.properieslist)
+    this.homeservice.getallproperties().subscribe((res:any)=>{
+      this.properieslist = res;
+      this.filteredProperties = this.properieslist;
     },error=>{
       console.log(error)
     })
 
+  }
+
+  onSearch() {
+    if (this.searchTerm.trim() !== '') {
+      this.filteredProperties = this.properieslist.filter((propert: Property) =>
+        propert.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+        propert.description.toLowerCase().includes(this.searchTerm.toLowerCase())
+      );
+    } else {
+      this.filteredProperties = this.properieslist;
+    }
   }
 
 }

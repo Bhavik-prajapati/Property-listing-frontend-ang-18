@@ -1,7 +1,63 @@
 <app-header></app-header>
+
+<div class="container mt-4" style="margin: auto;text-align: center;display: flex;justify-content: center;align-items: center;margin-bottom: 150px;margin-top: 200px;padding-top: 200px;">
+  <!-- Search Form -->
+  <form class="input-group mb-3 w-75" (ngSubmit)="onSearch()" style="display: flex;justify-content: center;align-items: center;">
+    
+    <!-- Property Type Dropdown -->
+    <select 
+      name="propertyType" 
+      [(ngModel)]="propertyType"
+      class="form-select p-4" 
+      style="border-top-left-radius: 30px; border-bottom-left-radius: 30px; border: 1px solid black; box-shadow: none; outline: none; width: 20%;"
+      aria-label="Select Property Type">
+      <option value="" disabled selected>Select Type</option>
+      <option value="rent">Rent</option>
+      <option value="sell">Sell</option>
+    </select>
+    
+    <!-- City Dropdown -->
+    <select 
+      name="city" 
+      [(ngModel)]="city"
+      class="form-select p-4" 
+      style="border: 1px solid black; box-shadow: none; outline: none; width: 20%;"
+      aria-label="Select City">
+      <option value="" disabled selected>Select City</option>
+      <option value="new-york">New York</option>
+      <option value="los-angeles">Los Angeles</option>
+      <option value="chicago">Chicago</option>
+      <!-- Add more cities as needed -->
+    </select>
+    
+    <!-- Search Input -->
+    <input 
+      type="text" 
+      name="search" 
+      style="border: 1px solid black; box-shadow: none; outline: none; width: 40%;"
+      [(ngModel)]="searchTerm" 
+      class="form-control p-4" 
+      placeholder="Search Property" 
+      aria-label="Search Property" 
+      aria-describedby="button-search">
+    
+    <!-- Search Button -->
+    <button 
+      class="btn btn-danger p-4" 
+      type="submit" 
+      style="border-top-right-radius: 30px; border-bottom-right-radius: 30px; border: 1px solid black; box-shadow: none; outline: none; width: 20%;"
+      id="button-search">
+      <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0,0,300,150">
+        <g fill="#ffffff" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><g transform="scale(5.12,5.12)"><path d="M21,3c-9.39844,0 -17,7.60156 -17,17c0,9.39844 7.60156,17 17,17c3.35547,0 6.46094,-0.98437 9.09375,-2.65625l12.28125,12.28125l4.25,-4.25l-12.125,-12.09375c2.17969,-2.85937 3.5,-6.40234 3.5,-10.28125c0,-9.39844 -7.60156,-17 -17,-17zM21,7c7.19922,0 13,5.80078 13,13c0,7.19922 -5.80078,13 -13,13c-7.19922,0 -13,-5.80078 -13,-13c0,-7.19922 5.80078,-13 13,-13z"></path></g></g>
+        </svg>
+    </button>
+  </form>
+</div>
+
+<!-- Property List -->
 <div class="property-list container">
   <div class="row">
-    <div class="col-md-3 mb-4" *ngFor="let property of properieslist">
+    <div class="col-md-3 mb-4" *ngFor="let property of filteredProperties">
       <app-property-card [property]="property"></app-property-card>
     </div>
   </div>

@@ -13,9 +13,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './allproperties.component.css'
 })
 export class AllpropertiesComponent {
-  
   properieslist:any;
   router=inject(Router);
+  propertiesToShow: number = 8; 
+  displayedProperties: any[] = [];
 
   constructor(private allproperties:AllpropertiesService){
     const token=localStorage.getItem("token");
@@ -26,13 +27,20 @@ export class AllpropertiesComponent {
     this.getalldata();
   }
 
-  getalldata(){
-    this.allproperties.getallproperties().subscribe((res)=>{
-      this.properieslist=res;
-      console.log(this.properieslist)
-    },error=>{
-      console.log(error)
-    })
+    getalldata(){
+      this.allproperties.getallproperties().subscribe((res)=>{
+        this.properieslist = res;
+        this.displayedProperties = this.properieslist.slice(0, this.propertiesToShow);
+        console.log(this.displayedProperties);
+  
+      },error=>{
+        console.log(error)
+      })
 
-  }
+    }
+
+    loadMore() {
+      this.propertiesToShow += 8;
+      this.displayedProperties = this.properieslist.slice(0, this.propertiesToShow);
+    }
 }
