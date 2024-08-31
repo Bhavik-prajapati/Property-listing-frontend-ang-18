@@ -23,5 +23,10 @@ export class HeaderComponent {
     //   this.router.navigateByUrl("login");
     // }
   }
+
+  logout(){
+    localStorage.clear();
+    this.router.navigateByUrl("login");
+  }
   
 }

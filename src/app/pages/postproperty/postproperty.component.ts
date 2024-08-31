@@ -63,11 +63,15 @@ export class PostpropertyComponent implements OnInit {
         coordinates: [
           parseFloat(this.property.longitude),
           parseFloat(this.property.latitude)
-        ]
+        ] 
       }));
   
       this.postproperty.createproperty(formData).subscribe(
-        (res) => console.log(res),
+        (res) =>{
+          console.log(res)
+          debugger;
+          alert("saved data successs...");
+        },
         (err) => console.log(err)
       );
     } else {

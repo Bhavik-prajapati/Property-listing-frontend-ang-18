@@ -32,8 +32,24 @@
     <div class="mb-3">
       <label for="propertyType" class="form-label">Property Type</label>
       <select id="propertyType" class="form-select" [(ngModel)]="property.propertyType" name="propertyType" required>
+        <option value="" disabled selected>--Choose property type--</option>
         <option value="Rent">Rent</option>
         <option value="Sell">Sell</option>
+        <option value="Pg">Pg</option>
+        <option value="Buy">Buy</option>
+        <option value="Lease">Lease</option>
+        <option value="Office Space">Office Space</option>
+        <option value="Warehouse">Warehouse</option>
+        <option value="Retail Space">Retail Space</option>
+        <option value="Land">Land</option>
+        <option value="Garage">Garage</option>
+        <option value="Co-working Space">Co-working Space</option>
+        <option value="Holiday Home">Holiday Home</option>
+        <option value="Industrial">Industrial</option>
+        <option value="Studio">Studio</option>
+        <option value="Penthouse">Penthouse</option>
+        <option value="Townhouse">Townhouse</option>
+        <option value="Villa">Villa</option>
       </select>
     </div>
 
