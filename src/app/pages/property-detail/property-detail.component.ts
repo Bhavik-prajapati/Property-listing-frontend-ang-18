@@ -24,6 +24,7 @@ export class PropertyDetailComponent {
     const id = this.route.snapshot.paramMap.get('id');
     this.propertyservice.getpropertybyid(id).subscribe((res:any)=>{
       console.log(res);
+      debugger;
       this.property=res;
       console.log(this.property)
     },error=>{

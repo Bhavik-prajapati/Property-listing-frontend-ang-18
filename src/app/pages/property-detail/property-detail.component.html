@@ -16,7 +16,7 @@
 
   <div id="propertyCarousel{{property?._id}}" class="carousel slide">
     <div class="carousel-inner">
-      <div *ngFor="let image of property?.imageUrls; let i = index" class="carousel-item" [class.active]="i === 0">
+      <div *ngFor="let image of property?.images; let i = index" class="carousel-item" [class.active]="i === 0">
         <img [src]="image" class="d-block w-100 carousel-image" alt="{{ property?.title }}">
       </div>
     </div>
