@@ -1,1 +1,53 @@
-<p>postproperty works!</p>
+<app-header></app-header>
+
+<div class="container mt-4">
+  <h4 class="text-center">Sell or Rent your Property</h4>
+
+  <form (ngSubmit)="onSubmit(propertyForm)" #propertyForm="ngForm">
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <input type="text" id="title" class="form-control" [(ngModel)]="property.title" name="title" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea id="description" class="form-control" [(ngModel)]="property.description" name="description" required></textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" id="price" class="form-control" [(ngModel)]="property.price" name="price" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="latitude" class="form-label">Latitude</label>
+      <input type="number" id="latitude" class="form-control" [(ngModel)]="property.latitude" name="latitude" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="longitude" class="form-label">Longitude</label>
+      <input type="number" id="longitude" class="form-control" [(ngModel)]="property.longitude" name="longitude" required />
+    </div>
+
+    <div class="mb-3">
+      <label for="propertyType" class="form-label">Property Type</label>
+      <select id="propertyType" class="form-select" [(ngModel)]="property.propertyType" name="propertyType" required>
+        <option value="Rent">Rent</option>
+        <option value="Sell">Sell</option>
+      </select>
+    </div>
+
+    <div class="mb-3">
+      <label for="images" class="form-label">Upload Images</label>
+      <input type="file" id="images" class="form-control" (change)="onFileSelected($event)" multiple />
+      <div *ngIf="selectedFiles.length > 0" class="mt-2">
+        <h6>Selected Images:</h6>
+        <ul>
+          <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
