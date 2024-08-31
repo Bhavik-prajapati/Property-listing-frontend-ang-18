@@ -14,12 +14,13 @@
 
   </button>
 
-  <div id="propertyCarousel{{property._id}}" class="carousel slide">
+  <div id="propertyCarousel{{property?._id}}" class="carousel slide">
     <div class="carousel-inner">
-      <div *ngFor="let image of property.images; let i = index" class="carousel-item" [class.active]="i === 0">
-        <img [src]="image" class="d-block w-100 carousel-image" alt="{{ property.title }}">
+      <div *ngFor="let image of property?.imageUrls; let i = index" class="carousel-item" [class.active]="i === 0">
+        <img [src]="image" class="d-block w-100 carousel-image" alt="{{ property?.title }}">
       </div>
     </div>
+
     <a class="carousel-control-prev" href="javascript:void(0)" (click)="prevSlide(property._id)" role="button">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
@@ -36,7 +37,7 @@
       <p class="card-text">{{ property.description }}</p>
       <p class="card-text"><strong>Type:</strong> {{ property.propertyType }}</p>
       <p class="card-text"><strong>Price:</strong> {{ property.price | currency }}</p>
-      <p class="card-text"><strong>Location:</strong> {{ property.location.coordinates[1] }}, {{ property.location.coordinates[0] }}</p>
+      <p class="card-text"><strong>Location:</strong> Latitude: {{ property?.location?.coordinates[1] }}, Longitude: {{ property?.location?.coordinates[0] }}</p>
       <p class="card-text"><small class="text-muted">Posted on {{ property.createdAt | date:'mediumDate' }}</small></p>
     </div>
   </div>

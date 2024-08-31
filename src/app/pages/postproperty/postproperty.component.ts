@@ -45,19 +45,28 @@ export class PostpropertyComponent implements OnInit {
 
   onSubmit(form: NgForm) {
     if (form.valid) {
-      const propertyData = {
-        title: this.property.title,
-        description: this.property.description,
-        price: this.property.price,
-        location: {
-          type: "Point",
-          coordinates: [parseFloat(this.property.longitude), parseFloat(this.property.latitude)]
-        },
-        propertyType: this.property.propertyType,
-        images: this.selectedFiles.map(file => file.name) 
-      };
-      console.log('Submitting property data:', propertyData);
-      this.postproperty.createproperty(propertyData).subscribe(
+      const formData = new FormData();
+  
+      formData.append('title', this.property.title);
+      formData.append('description', this.property.description);
+      formData.append('price', this.property.price);
+      formData.append('latitude', this.property.latitude);
+      formData.append('longitude', this.property.longitude);
+      formData.append('propertyType', this.property.propertyType);
+      
+      this.selectedFiles.forEach((file, index) => {
+        formData.append(`images`, file, file.name);
+      });
+  
+      formData.append('location', JSON.stringify({
+        type: "Point",
+        coordinates: [
+          parseFloat(this.property.longitude),
+          parseFloat(this.property.latitude)
+        ]
+      }));
+  
+      this.postproperty.createproperty(formData).subscribe(
         (res) => console.log(res),
         (err) => console.log(err)
       );
@@ -65,4 +74,5 @@ export class PostpropertyComponent implements OnInit {
       alert('Please fill all the required fields correctly.');
     }
   }
+  
 }
