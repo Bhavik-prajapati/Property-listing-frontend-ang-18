@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { Property, PropertyCardComponent } from "../../components/property-card/property-card.component";
 import { HeaderComponent } from "../../components/header/header.component";
 import { FormsModule } from '@angular/forms';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-home',
@@ -33,7 +34,11 @@ export class HomeComponent {
   }
 
   getalldata(){
-    this.homeservice.getallproperties().subscribe((res:any)=>{
+    this.homeservice.getallproperties().subscribe((res: HttpResponse<any>)=>{
+      console.log(res.status)
+      if(res.status==401){
+        this.router.navigateByUrl("/login");
+      }
       this.properieslist = res;
       this.filteredProperties = this.properieslist;
     },error=>{

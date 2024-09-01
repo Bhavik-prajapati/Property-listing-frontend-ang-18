@@ -9,6 +9,6 @@ export class PropertyDetailService {
   constructor(private http:HttpClient) { }
 
   getpropertybyid(id:any){
-    return this.http.get(`http://localhost:5000/properties/${id}`);
+    return this.http.get(`http://localhost:5000/properties/${id}`,{withCredentials: true});
   }
 }

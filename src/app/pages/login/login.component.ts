@@ -14,11 +14,11 @@ import { Router } from '@angular/router';
 export class LoginComponent {
 
   constructor(private loginservice:LoginService,private router:Router){
-  const token=localStorage.getItem("token");
-    if(token)
-    {
-      this.router.navigateByUrl("home");
-    }
+  // const token=localStorage.getItem("token");
+    // if(token)
+    // {
+    //   this.router.navigateByUrl("home");
+    // }
   }
   userdata:any={
     email:"",
@@ -29,10 +29,12 @@ export class LoginComponent {
   login(){
     console.log(this.userdata);
     this.loginservice.login(this.userdata).subscribe((res:any)=>{
-      localStorage.setItem("token",res.token);
-      this.router.navigateByUrl("home");
+      if(res){
+        console.log(res,"+++++++++++")
+        this.router.navigateByUrl("home");
+      }
     },err=>{  
-      console.log(err)
+      console.log(err,"+++++++++++++++")
     }
   )
 

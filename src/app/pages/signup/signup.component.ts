@@ -24,11 +24,11 @@ interface UserData {
 export class SignupComponent {
 
   constructor(private signupservice:SignupService,private router:Router){
-    const token=localStorage.getItem("token");
-    if(token)
-    {
-      this.router.navigateByUrl("home");
-    }
+    // const token=localStorage.getItem("token");
+    // if(token)
+    // {
+    //   this.router.navigateByUrl("home");
+    // }
   }
   userdata:UserData={
     name:"",
@@ -42,7 +42,7 @@ export class SignupComponent {
     console.log(this.userdata);
     this.signupservice.signupuser(this.userdata).subscribe((res:any)=>{
       console.log(res);
-      localStorage.setItem("token",res.token);
+      // localStorage.setItem("token",res.token);
       this.router.navigateByUrl("login");
     },error=>console.log(error))
   }
