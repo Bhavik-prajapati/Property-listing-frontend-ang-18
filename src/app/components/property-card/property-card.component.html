@@ -3,7 +3,14 @@
   <div id="propertyCarousel{{property._id}}" class="carousel slide">
     <div class="carousel-inner">
       <div *ngFor="let image of property.images; let i = index" class="carousel-item" [class.active]="i === 0">
-        <img [src]="image" class="d-block w-100 carousel-image" alt="{{ property.title }}">
+        <img 
+        [src]="image"
+        [attr.srcset]="image + ' 1x, ' + image + '-2x 2x'"
+        [attr.sizes]="'(max-width: 600px) 100vw, 50vw'"
+        class="d-block w-100 carousel-image"
+        alt="{{ property.title }}"
+        loading="lazy"
+      >  
       </div>
     </div>
     <a class="carousel-control-prev" href="javascript:void(0)" (click)="prevSlide(property._id)" role="button">
