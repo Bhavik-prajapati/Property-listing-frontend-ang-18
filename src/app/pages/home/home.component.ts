@@ -34,7 +34,7 @@ export class HomeComponent {
       if(res.status==401){
         this.router.navigateByUrl("/login");
       }
-      this.properieslist = res;
+      this.properieslist = res.body;
       this.filteredProperties = this.properieslist;
     },error=>{
       console.log(error)
