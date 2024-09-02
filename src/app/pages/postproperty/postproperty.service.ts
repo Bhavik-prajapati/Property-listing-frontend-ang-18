@@ -10,6 +10,6 @@ export class PostpropertyService {
 
   createproperty(formData:any){
     console.log(formData,"+++++++++");
-    return this.http.post('http://localhost:5000/properties/', formData);
+    return this.http.post('http://localhost:5000/properties/', formData,{withCredentials:true});
   }
 }

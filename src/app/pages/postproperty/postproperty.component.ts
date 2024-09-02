@@ -27,10 +27,6 @@ export class PostpropertyComponent implements OnInit {
 
   constructor(private postproperty: PostpropertyService, router: Router) {
     this.router = router;
-    const token = localStorage.getItem("token");
-    if (!token) {
-      this.router.navigateByUrl("login");
-    }
   }
 
   ngOnInit(): void {
