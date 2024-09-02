@@ -25,11 +25,6 @@ export class HomeComponent {
   searchTerm:string='';
 
   constructor(private homeservice:HomeService){
-    const token=localStorage.getItem("token");
-    if(!token)
-    {
-      this.router.navigateByUrl("login");
-    }
     this.getalldata();
   }
 

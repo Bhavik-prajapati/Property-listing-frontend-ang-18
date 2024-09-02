@@ -19,11 +19,6 @@ export class AllpropertiesComponent {
   displayedProperties: any[] = [];
 
   constructor(private allproperties:AllpropertiesService){
-    const token=localStorage.getItem("token");
-    if(!token)
-    {
-      this.router.navigateByUrl("login");
-    }
     this.getalldata();
   }
 
