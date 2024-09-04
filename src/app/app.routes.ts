@@ -7,32 +7,37 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { PropertyDetailComponent } from './pages/property-detail/property-detail.component';
 import { PostpropertyComponent } from './pages/postproperty/postproperty.component';
 import { AllpropertiesComponent } from './pages/allproperties/allproperties.component';
+import { authGuard } from './components/authguard/auth.guard';
+import { PaymentGatewayComponent } from './pages/payment-gateway/payment-gateway.component';
 
 export const routes: Routes = [
-
     {
-        path:"",
-        redirectTo:"signup",
-        pathMatch:"full"
+        path: "",
+        redirectTo: "signup",
+        pathMatch: "full",
     },
     {
-        path:"login",
-        component:LoginComponent
+        path: "login",
+        component: LoginComponent,
     },
     {
-        path:"signup",
-        component:SignupComponent
+        path: "signup",
+        component: SignupComponent,
     },
+    {path:"payment",component:PaymentGatewayComponent},
     {
-        path:"",
-        component:LayoutComponent,
-        children:[
-            {path:"home",component:HomeComponent},
-            {path:"about",component:AboutComponent},
-            // { path: 'property', component: PropertyDetailComponent },
-            { path: 'property/:id', component: PropertyDetailComponent },
-            {path:'postproperty',component:PostpropertyComponent},
-            {path:'allproperties',component:AllpropertiesComponent}
+        path: "",
+        component: LayoutComponent,
+        children: [
+            { path: "home", component: HomeComponent, canActivate: [authGuard] },
+            { path: "about", component: AboutComponent, canActivate: [authGuard] },
+            { path: "property/:id", component: PropertyDetailComponent, canActivate: [authGuard] },
+            { path: "postproperty", component: PostpropertyComponent, canActivate: [authGuard] },
+            { path: "allproperties", component: AllpropertiesComponent, canActivate: [authGuard] }
         ]
+    },
+    {
+        path: "**",
+        redirectTo: "signup",
     }
 ];
