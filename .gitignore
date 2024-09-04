@@ -9,6 +9,9 @@
 # Node
 node_modules
 .env
+src/environments/environment.ts
+src/environments/environment.prod.ts
+
 npm-debug.log
 yarn-error.log
 
