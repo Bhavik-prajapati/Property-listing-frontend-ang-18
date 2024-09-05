@@ -21,10 +21,10 @@ export class LoginComponent {
   response: any = "";
 
   constructor(private loginservice: LoginService, private router: Router) {
-    // const token = localStorage.getItem("token");
-    // if (token) {
-    //   this.router.navigateByUrl("home");
-    // }
+    const token = localStorage.getItem("token");
+    if (token) {
+      this.router.navigateByUrl("home");
+    }
   }
 
   login() {

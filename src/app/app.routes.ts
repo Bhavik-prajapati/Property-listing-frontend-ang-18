@@ -9,6 +9,7 @@ import { PostpropertyComponent } from './pages/postproperty/postproperty.compone
 import { AllpropertiesComponent } from './pages/allproperties/allproperties.component';
 import { authGuard } from './components/authguard/auth.guard';
 import { PaymentGatewayComponent } from './pages/payment-gateway/payment-gateway.component';
+import { MypropertiesComponent } from './pages/myproperties/myproperties.component';
 
 export const routes: Routes = [
     {
@@ -33,7 +34,8 @@ export const routes: Routes = [
             { path: "about", component: AboutComponent, canActivate: [authGuard] },
             { path: "property/:id", component: PropertyDetailComponent, canActivate: [authGuard] },
             { path: "postproperty", component: PostpropertyComponent, canActivate: [authGuard] },
-            { path: "allproperties", component: AllpropertiesComponent, canActivate: [authGuard] }
+            { path: "allproperties", component: AllpropertiesComponent, canActivate: [authGuard] },
+            { path: "myproperties", component: MypropertiesComponent, canActivate: [authGuard] }
         ]
     },
     {
