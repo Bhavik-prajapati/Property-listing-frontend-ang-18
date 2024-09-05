@@ -1,66 +1,69 @@
+<app-header></app-header>
+
 <div class="container">
-  <h1>My Properties</h1>
-  <!-- Display properties in a grid layout -->
-  <div class="row mb-5">
-    <div class="col-md-4" *ngFor="let property of properties">
-      <div class="card">
-        <div id="propertyCarousel{{property._id}}" class="carousel slide">
-          <div class="carousel-inner">
-            <div *ngFor="let image of property.images; let i = index" class="carousel-item" [class.active]="i === 0">
-              <img 
-                [src]="image"
-                [attr.srcset]="image + ' 1x, ' + image + '-2x 2x'"
-                [attr.sizes]="'(max-width: 600px) 100vw, 50vw'"
-                class="d-block w-100 carousel-image"
-                alt="{{ property.title }}"
-                loading="lazy"
-              >
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Images</th>
+        <th scope="col">Price</th>
+        <th scope="col">Property Name/Type</th>
+        <th scope="col">Location</th>
+        <th scope="col">Edit/Update</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let property of properties">
+        <td>
+          <div id="propertyCarousel{{property._id}}" class="carousel slide">
+            <div class="carousel-inner">
+              <div *ngFor="let image of property.images; let i = index" class="carousel-item" [class.active]="i === 0">
+                <img 
+                  [src]="image"
+                  class="d-block w-100 carousel-image"
+                  alt="{{ property.title }}"
+                  loading="lazy"
+                >
+              </div>
             </div>
+            <a class="carousel-control-prev" href="javascript:void(0)" (click)="prevSlide(property._id)" role="button">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="javascript:void(0)" (click)="nextSlide(property._id)" role="button">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </a>
           </div>
-          <a class="carousel-control-prev" href="javascript:void(0)" (click)="prevSlide(property._id)" role="button">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="javascript:void(0)" (click)="nextSlide(property._id)" role="button">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-          </a>
-        </div>
-        <div class="card-body d-flex flex-column justify-content-between">
-          <div>
-            <h5 class="card-title">{{ property.title }}</h5>
-            <p class="card-text">{{ property.description }}</p>
-            <p class="card-text"><strong>Price:</strong> {{ property.price | currency }}</p>
-            <p class="card-text"><strong>Type:</strong> {{ property.propertyType }}</p>
-            <p class="card-text"><strong>Location:</strong> {{ property.location.coordinates[1] }}, {{ property.location.coordinates[0] }}</p>
-            <p class="card-text"><small class="text-muted">Posted on {{ property.createdAt | date:'mediumDate' }}</small></p>
-          </div>
-          <div>
-            <button class="btn btn-danger w-100 mt-1" [routerLink]="['/property', property._id]">View Detail</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+        </td>
+        <td><p class="card-text">{{ property.price | currency }}</p></td>
+        <td><p class="card-text">{{property.title}}/{{ property.propertyType }}</p></td>
+        <td>{{ property.location.coordinates[1] }}, {{ property.location.coordinates[0] }}</td>
+        <td>
+          <button class="btn btn-danger" (click)="editproperty(property._id)">
+            <img src="/edit.svg" alt="Edit" height="20px">
+          </button>
+        </td>
+        <td>
+          <button class="btn btn-danger"  (click)="deleteproperty(property._id)">
+            <img src="/delete.svg" alt="Delete" height="20px">
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
 <!-- Add some basic styles -->
 <style>
-  .card {
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    overflow: hidden;
-    margin-bottom: 20px; /* Add margin to space out the cards */
-  }
   .carousel-inner img {
-    height: 180px;
-    object-fit: cover;
+    width: 300px; /* Fixed width for images */
+    height: 200px; /* Fixed height to maintain consistency */
+    object-fit: cover; /* Ensures images retain aspect ratio without distorting */
+    margin: 0 auto; /* Centers the image */
   }
   .carousel-control-prev-icon,
   .carousel-control-next-icon {
     background-color: rgba(0, 0, 0, 0.5);
-  }
-  .card-body {
-    padding: 15px;
   }
 </style>

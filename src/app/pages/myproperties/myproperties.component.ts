@@ -1,10 +1,11 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
 import { jwtDecode } from 'jwt-decode';
 import { MypropertiesService } from './myproperties.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 declare var bootstrap: any;
 @Component({
@@ -18,6 +19,7 @@ export class MypropertiesComponent implements OnInit {
   userid:any;
   properties: any[] = []; 
   mypropertyservice=inject(MypropertiesService);
+  router=inject(Router);
   ngOnInit(): void {
   const token = localStorage.getItem('token');
     if (token) {
@@ -50,5 +52,14 @@ export class MypropertiesComponent implements OnInit {
       const carousel = new bootstrap.Carousel(element);
       carousel.next();
     }
+  }
+
+  editproperty(id:any){
+    console.log(id)
+    // this.router.navigateByUrl(`postproperty`)
+    this.router.navigate(['postproperty'], { queryParams: { id: id } });
+  }
+  deleteproperty(id:any){
+    console.log(id)
   }
 }
