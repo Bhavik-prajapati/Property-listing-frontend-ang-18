@@ -62,6 +62,9 @@
           <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
         </ul>
       </div>
+      <div *ngFor="let image of existingimages">
+        <img [src]="image" alt="Property Image" width="200" height="150" class="mb-2 mt-2">
+      </div>
     </div>
 
     <button type="submit" class="btn btn-danger w-100 mt-2">Submit</button>

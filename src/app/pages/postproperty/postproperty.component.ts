@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule, NgForm } from '@angular/forms';
 import { PostpropertyService } from './postproperty.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, JsonPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-postproperty',
   standalone: true,
-  imports: [HeaderComponent, ReactiveFormsModule, CommonModule, FormsModule], // CommonModule included
+  imports: [HeaderComponent, ReactiveFormsModule, CommonModule, FormsModule,JsonPipe], // CommonModule included
   templateUrl: './postproperty.component.html',
   styleUrls: ['./postproperty.component.css']
 })
@@ -24,6 +24,7 @@ export class PostpropertyComponent implements OnInit {
   };
   selectedFiles: File[] = [];
   router: Router;
+  existingimages: any=[];
 
   constructor(private postproperty: PostpropertyService, router: Router,private route: ActivatedRoute) {
     this.router = router;
@@ -37,9 +38,13 @@ export class PostpropertyComponent implements OnInit {
       console.log('ID from query params:', id);
 
 
-      this.postproperty.getpropertybyid(id).subscribe((res)=>{
+      this.postproperty.getpropertybyid(id).subscribe((res:any)=>{
         console.log(res)
         this.property=res;
+        this.property.latitude=res.location.coordinates[0];
+        this.property.longitude=res.location.coordinates[1];
+        this.existingimages=res.images || [];
+        console.log(this.existingimages,"++++++++++++++")
       },err=>console.log(err))
 
     });
