@@ -55,11 +55,27 @@ export class MypropertiesComponent implements OnInit {
   }
 
   editproperty(id:any){
-    console.log(id)
     // this.router.navigateByUrl(`postproperty`)
     this.router.navigate(['postproperty'], { queryParams: { id: id } });
   }
-  deleteproperty(id:any){
-    console.log(id)
+  
+  deletepmyproperty(id: string) {
+    console.log(id);
+    this.mypropertyservice.deleteproperty(id).subscribe({
+      next: (res: any) => {
+        console.log(res);
+        if (res) { // Assuming the response contains a status field
+          alert("Property deleted successfully.");
+        } else {
+          alert("Failed to delete property.");
+        }
+      },
+      error: (err) => {
+        console.error('Error deleting property:', err);
+        alert("An error occurred while deleting the property.");
+      }
+    });
   }
+  
+
 }

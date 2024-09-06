@@ -12,4 +12,9 @@ export class PostpropertyService {
     console.log(formData,"+++++++++");
     return this.http.post('http://localhost:5000/properties/', formData,{withCredentials:true});
   }
+
+  getpropertybyid(id:any){
+    return this.http.get(`http://localhost:5000/properties/getpropertybyid/${id}`,{});
+
+  }
 }

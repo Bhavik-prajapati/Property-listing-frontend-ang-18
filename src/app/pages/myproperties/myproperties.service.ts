@@ -12,4 +12,7 @@ export class MypropertiesService {
   getmyproperties(userid:any){
     return this.http.get(`http://localhost:5000/properties/getmyproperty/${userid}`);
   }
+  deleteproperty(id:any){
+    return this.http.delete(`http://localhost:5000/properties/${id}`);
+  }
 }

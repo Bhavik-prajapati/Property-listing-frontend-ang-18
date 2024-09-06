@@ -1,7 +1,7 @@
 <app-header></app-header>
 
-<div class="container">
-  <table class="table">
+<div class="container mt-5">
+  <table class="table p-5">
     <thead>
       <tr>
         <th scope="col">Images</th>
@@ -20,6 +20,7 @@
               <div *ngFor="let image of property.images; let i = index" class="carousel-item" [class.active]="i === 0">
                 <img 
                   [src]="image"
+                  style="height: 40px !important;"
                   class="d-block w-100 carousel-image"
                   alt="{{ property.title }}"
                   loading="lazy"
@@ -40,12 +41,12 @@
         <td><p class="card-text">{{property.title}}/{{ property.propertyType }}</p></td>
         <td>{{ property.location.coordinates[1] }}, {{ property.location.coordinates[0] }}</td>
         <td>
-          <button class="btn btn-danger" (click)="editproperty(property._id)">
+          <button class="btn btn-danger p-3" (click)="editproperty(property._id)">
             <img src="/edit.svg" alt="Edit" height="20px">
           </button>
         </td>
         <td>
-          <button class="btn btn-danger"  (click)="deleteproperty(property._id)">
+          <button class="btn btn-danger p-3"  (click)="deletepmyproperty(property._id)">
             <img src="/delete.svg" alt="Delete" height="20px">
           </button>
         </td>

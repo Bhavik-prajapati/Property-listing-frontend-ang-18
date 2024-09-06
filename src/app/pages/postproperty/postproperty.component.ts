@@ -3,7 +3,7 @@ import { HeaderComponent } from "../../components/header/header.component";
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule, NgForm } from '@angular/forms';
 import { PostpropertyService } from './postproperty.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-postproperty',
@@ -25,12 +25,24 @@ export class PostpropertyComponent implements OnInit {
   selectedFiles: File[] = [];
   router: Router;
 
-  constructor(private postproperty: PostpropertyService, router: Router) {
+  constructor(private postproperty: PostpropertyService, router: Router,private route: ActivatedRoute) {
     this.router = router;
   }
 
   ngOnInit(): void {
-    // Initialize property if needed
+    // Access query parameters
+    this.route.queryParams.subscribe(queryParams => {
+      console.log(queryParams); 
+      const id = queryParams['id'];
+      console.log('ID from query params:', id);
+
+
+      this.postproperty.getpropertybyid(id).subscribe((res)=>{
+        console.log(res)
+        this.property=res;
+      },err=>console.log(err))
+
+    });
   }
 
   onFileSelected(event: any) {
@@ -65,7 +77,6 @@ export class PostpropertyComponent implements OnInit {
       this.postproperty.createproperty(formData).subscribe(
         (res) =>{
           console.log(res)
-          debugger;
           alert("saved data successs...");
         },
         (err) => console.log(err)
