@@ -60,10 +60,8 @@ export class MypropertiesComponent implements OnInit {
   }
   
   deletepmyproperty(id: string) {
-    console.log(id);
     this.mypropertyservice.deleteproperty(id).subscribe({
       next: (res: any) => {
-        console.log(res);
         if (res) { // Assuming the response contains a status field
           alert("Property deleted successfully.");
         } else {

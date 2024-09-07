@@ -9,12 +9,16 @@ export class PostpropertyService {
   constructor(private http:HttpClient) { }
 
   createproperty(formData:any){
-    console.log(formData,"+++++++++");
     return this.http.post('http://localhost:5000/properties/', formData,{withCredentials:true});
   }
 
   getpropertybyid(id:any){
     return this.http.get(`http://localhost:5000/properties/getpropertybyid/${id}`,{});
+  }
 
+  updatepropertybyid(id:any,formData:any)
+  {   
+    debugger;
+    return this.http.patch(`http://localhost:5000/properties/${id}`,{formData},{});
   }
 }
