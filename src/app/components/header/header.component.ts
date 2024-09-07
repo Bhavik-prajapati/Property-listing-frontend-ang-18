@@ -13,15 +13,13 @@ export class HeaderComponent {
   router=inject(Router);
   constructor(){
     const token=localStorage.getItem("token");
-    if(!token){
-      this.islogin=true;
-    }else{
-      this.islogin=false;
-    }
     // if(!token)
     // {
     //   this.router.navigateByUrl("login");
     // }
+    if(token){
+      this.islogin=true;
+    }
   }
 
   logout(){

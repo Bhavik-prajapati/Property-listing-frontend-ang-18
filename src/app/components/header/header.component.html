@@ -12,25 +12,37 @@
                     <a href="/signup">Login/Signup</a>
                 </li>
             </button> -->
-            <li>
-                <a href="/home" class="text-white">Home</a>
-            </li>
+         
             <!-- <li>
                 <a href="/allproperties" class="text-white">All  Properties</a>
             </li> -->
             <!-- <li>
                 <a href="/postproperty" class="text-white">Post Property</a>
             </li> -->
-            <li>
-                <a href="/myproperties" class="text-white">myproperties</a>
-            </li>
-            <li>
-                <!-- <a href="#">Logout</a> -->
-                <span (click)="logout()" class="text-white" style="cursor: pointer;">
-                    Logout
-                </span>
-            </li>
-        
+           
+
+                @if (islogin) {
+                    <li>
+                        <a href="/home" class="text-white">Home</a>
+                    </li>
+                    <li>
+                        <a href="/myproperties" class="text-white">myproperties</a>
+                    </li>
+                    <li>
+                        <span (click)="logout()" class="text-white" style="cursor: pointer;">
+                            Logout
+                        </span>
+                    </li>
+                }
+                @if (!islogin) {
+                    <li>
+                        <a href="/login">Login</a>
+                    </li>
+                    <li>
+                        <a href="/signup">Signup</a>
+                    </li>
+                }
+            
         <!-- <li class="text-danger">About</li> -->
     </ul>
 </header>

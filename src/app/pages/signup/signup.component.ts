@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { SignupService } from './signup.service';
 import { Router } from '@angular/router';
+import { HeaderComponent } from "../../components/header/header.component";
 
 interface UserData {
   name: string;
@@ -17,7 +18,7 @@ interface UserData {
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule, HeaderComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
@@ -27,6 +28,7 @@ export class SignupComponent {
     const token=localStorage.getItem("token");
     if(token)
     {
+      debugger;
       this.router.navigateByUrl("home");
     }
   }

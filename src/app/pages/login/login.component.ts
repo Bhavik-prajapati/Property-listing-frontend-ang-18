@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { LoginService } from './login.service';
 import { JsonPipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, JsonPipe],
+  imports: [FormsModule, JsonPipe, HeaderComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']  // Fixed the typo here to `styleUrls`
 })
