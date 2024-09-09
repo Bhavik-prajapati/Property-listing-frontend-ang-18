@@ -25,14 +25,17 @@ export class MypropertiesComponent implements OnInit {
     if (token) {
       const decodedToken: any = jwtDecode(token); 
       this.userid=decodedToken.user.id;
-      this.mypropertyservice.getmyproperties(this.userid).subscribe((res:any)=>{
-        console.log(res)
-        this.properties=res;
-      },err=>console.log(err))
+      this.getallproperty();
 
     } else {
       console.error('Token not found!');
     }
+  }
+  getallproperty(){
+    this.mypropertyservice.getmyproperties(this.userid).subscribe((res:any)=>{
+      console.log(res)
+      this.properties=res;
+    },err=>console.log(err))
   }
 
   editProperty(id:any){}
@@ -67,6 +70,7 @@ export class MypropertiesComponent implements OnInit {
         } else {
           alert("Failed to delete property.");
         }
+        this.getallproperty();
       },
       error: (err) => {
         console.error('Error deleting property:', err);

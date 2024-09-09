@@ -13,13 +13,14 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./postproperty.component.css']
 })
 export class PostpropertyComponent implements OnInit {
- 
+  iseditmode:boolean=false;
   property: any = {
     title: '',
     description: '',
     price: '',
     latitude: '',
     longitude: '',
+    ownerPhone:'',
     propertyType: ''
   };
   selectedFiles: File[] = [];
@@ -65,6 +66,7 @@ export class PostpropertyComponent implements OnInit {
       formData.append('price', this.property.price);
       formData.append('latitude', this.property.latitude);
       formData.append('longitude', this.property.longitude);
+      formData.append('ownerPhone', this.property.ownerPhone);
       formData.append('propertyType', this.property.propertyType);
       
       this.selectedFiles.forEach((file, index) => {
@@ -83,12 +85,13 @@ export class PostpropertyComponent implements OnInit {
         (res) =>{
           console.log(res)
           alert("saved data successs...");
+          this.router.navigateByUrl("myproperties");
         },
         (err) => console.log(err)
       );
     } else {
       alert('Please fill all the required fields correctly.');
     }
-  }
+  } 
   
 }

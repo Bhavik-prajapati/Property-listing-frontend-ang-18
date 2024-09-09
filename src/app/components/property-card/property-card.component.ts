@@ -43,4 +43,5 @@ export class PropertyCardComponent {
       carousel.next();
     }
   }
+
 }

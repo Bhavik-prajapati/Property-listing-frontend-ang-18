@@ -7,7 +7,7 @@ import { inject, Injectable } from '@angular/core';
 export class MypropertiesService {
 
   http=inject(HttpClient);
-  constructor() { }
+  constructor() { } 
 
   getmyproperties(userid:any){
     return this.http.get(`http://localhost:5000/properties/getmyproperty/${userid}`);

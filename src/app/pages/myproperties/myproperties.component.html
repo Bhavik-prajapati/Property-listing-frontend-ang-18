@@ -8,6 +8,7 @@
         <th scope="col">Price</th>
         <th scope="col">Property Name/Type</th>
         <th scope="col">Location</th>
+        <th scope="col">Owner Phone</th>
         <th scope="col">Edit/Update</th>
         <th scope="col">Delete</th>
       </tr>
@@ -40,6 +41,7 @@
         <td><p class="card-text">{{ property.price | currency }}</p></td>
         <td><p class="card-text">{{property.title}}/{{ property.propertyType }}</p></td>
         <td>{{ property.location.coordinates[1] }}, {{ property.location.coordinates[0] }}</td>
+        <td>{{ property.ownerPhone }}</td>
         <td>
           <button class="btn btn-danger p-3" (click)="editproperty(property._id)">
             <img src="/edit.svg" alt="Edit" height="20px">
