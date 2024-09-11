@@ -32,12 +32,18 @@
                         <a href="/postproperty" class="text-white">postproperty</a>
                     </li>
                     <li>
+                        <a href="/plans" class="text-white">plans</a>
+                    </li>
+                    <li>
                         <span (click)="logout()" class="text-white" style="cursor: pointer;">
                             Logout
                         </span>
                     </li>
                 }
                 @if (!islogin) {
+                    <li>
+                        <a href="/plans" class="text-white">plans</a>
+                    </li>
                     <li>
                         <a href="/login">Login</a>
                     </li>
