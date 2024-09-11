@@ -10,6 +10,7 @@ import { AllpropertiesComponent } from './pages/allproperties/allproperties.comp
 import { authGuard } from './components/authguard/auth.guard';
 import { PaymentGatewayComponent } from './pages/payment-gateway/payment-gateway.component';
 import { MypropertiesComponent } from './pages/myproperties/myproperties.component';
+import { PlansComponent } from './pages/plans/plans.component';
 
 export const routes: Routes = [
     {
@@ -25,6 +26,9 @@ export const routes: Routes = [
         path: "signup",
         component: SignupComponent,
     },
+    {
+     path: "plans", component:PlansComponent
+    },
     {path:"payment",component:PaymentGatewayComponent},
     {
         path: "",
@@ -35,7 +39,7 @@ export const routes: Routes = [
             { path: "property/:id", component: PropertyDetailComponent, canActivate: [authGuard] },
             { path: "postproperty", component: PostpropertyComponent, canActivate: [authGuard] },
             { path: "allproperties", component: AllpropertiesComponent, canActivate: [authGuard] },
-            { path: "myproperties", component: MypropertiesComponent, canActivate: [authGuard] }
+            { path: "myproperties", component: MypropertiesComponent, canActivate: [authGuard] },
         ]
     },
     {

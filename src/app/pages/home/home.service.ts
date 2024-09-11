@@ -1,6 +1,6 @@
   import { HttpClient, HttpResponse } from '@angular/common/http';
   import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, retryWhen } from 'rxjs';
 
   @Injectable({
     providedIn: 'root'
@@ -14,6 +14,13 @@ import { Observable } from 'rxjs';
         withCredentials: true,
         observe: 'response', 
       });
+    }
+
+    checkplan():Observable<HttpResponse<any>>{
+      return this.http.get('http://localhost:5000/users/checkplan',{
+        withCredentials:true,
+        observe:'response'
+      })
     }
   
 

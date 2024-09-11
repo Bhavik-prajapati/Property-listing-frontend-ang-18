@@ -30,6 +30,7 @@ export class HomeComponent {
       this.router.navigateByUrl("login");
     }
     this.getalldata();
+    homeservice.checkplan().subscribe((res)=>{console.log(res)},err=>console.log(err))
   }
 
   getalldata(){
@@ -56,5 +57,6 @@ export class HomeComponent {
       this.filteredProperties = this.properieslist;
     }
   }
+
 
 }
