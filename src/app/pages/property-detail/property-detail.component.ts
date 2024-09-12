@@ -29,7 +29,6 @@ export class PropertyDetailComponent {
   constructor(private route: ActivatedRoute,private propertyservice:PropertyDetailService) {
     const token = localStorage.getItem("token") || "";
     const decodedToken: any = jwtDecode(token);
-    // console.log(decodedToken,"decode token......",decodedToken.user.id)
   }
   property:any={};
   ngOnInit(): void {
@@ -56,81 +55,4 @@ export class PropertyDetailComponent {
       carousel.next();
     }
   }
-
-  
-  
-  viewphone(){
-    const uniqueReceiptId = 'receipt_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
-    const orderData = {
-      amount: 10,
-      currency: 'INR',
-      receipt: uniqueReceiptId 
-    };
-    this.paymentService.createOrder(orderData).subscribe(order => {
-      const options = {
-        key: 'rzp_test_E6LlXaOl1uAoZf', // Replace with your Razorpay Key ID
-        amount: order.amount,
-        currency: order.currency,
-        name: 'Test Company',
-        description: 'Test Transaction',
-        order_id: order.id,
-        handler: (response: any) => {
-          const paymentData = {
-            razorpay_order_id: order.id,
-            razorpay_payment_id: response.razorpay_payment_id,
-            razorpay_signature: response.razorpay_signature
-          };
-
-          this.paymentService.verifyPayment(paymentData).subscribe(
-            () => {
-              alert('Payment successful and verified!');
-              const paymentData = {
-                razorpay_order_id: order.id,
-                razorpay_payment_id: response.razorpay_payment_id,
-                razorpay_signature: response.razorpay_signature,
-                transaction_status: 'completed',
-                timestamp: new Date(), 
-                user_id: 123, 
-                payment_method: 'card',
-                amount_paid: order.amount, 
-                receipt_number: response.receipt_number,
-                transaction_id: response.transaction_id
-              };
-              // console.log(paymentData);
-              this.showOneTimePopup();
-            },
-            () => {
-              alert('Payment verification failed.');
-            }
-          );
-        },
-        prefill: {
-          name: 'John Doe',
-          email: 'john.doe@example.com',
-          contact: '9999999999'
-        },
-        theme: {
-          color: '#3399cc'
-        }
-      };
-
-      const rzp1 = new Razorpay(options);
-      rzp1.open();
-    });
-
-  }
-
-  showOneTimePopup() {
-    if (!localStorage.getItem('popupShown')) {
-      Swal.fire({
-        title: 'Mo: 9825342912 (kindly Note this number)',
-        text: 'Thank you for your payment. This is a one-time message.',
-        icon: 'success',
-        confirmButtonText: 'OK'
-      }).then(() => {
-        localStorage.setItem('popupShown', 'true');
-      });
-    }
-  }
-
 }
