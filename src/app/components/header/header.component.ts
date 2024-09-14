@@ -13,11 +13,12 @@ export class HeaderComponent {
   router=inject(Router);
   constructor(){
     const token=localStorage.getItem("token");
+    const refreshtoken=localStorage.getItem("refreshtoken");
     // if(!token)
     // {
     //   this.router.navigateByUrl("login");
     // }
-    if(token){
+    if(token && refreshtoken){
       this.islogin=true;
     }
   }

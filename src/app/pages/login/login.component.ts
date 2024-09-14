@@ -32,9 +32,12 @@ export class LoginComponent {
     console.log(this.userdata);
     this.loginservice.login(this.userdata).subscribe(
       (res: any) => {
-        if (res && res.token) {
-          localStorage.setItem("token", res.token);
+        if (res && res.accessToken && res.refreshToken) {
+
+          localStorage.setItem("token",res.accessToken);
+          localStorage.setItem("refreshtoken",res.refreshToken);
           this.router.navigateByUrl("home");
+          // localStorage.setItem("token", res.token);
         }
       },
       err => {
