@@ -11,8 +11,16 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './plans.component.css'
 })
 export class PlansComponent {
-
+  isplan:string='';
   http=inject(HttpClient);
+  
+  constructor(){
+    this.http.get("http://localhost:5000/users/checkplan").subscribe((res:any)=>{
+      console.log(res.authcred.planType);
+      this.isplan = res.authcred.planType.toLowerCase();
+    },err=>console.log(err))  
+  }
+
   razorpayKey = 'rzp_test_E6LlXaOl1uAoZf'; // Replace with your actual Razorpay key
 
 
