@@ -13,7 +13,14 @@
         <th scope="col">Delete</th>
       </tr>
     </thead>
+    @if (nodata) {
+      <div class="d-flex">  
+        <h1 class="text-center">No data found</h1>
+      </div>
+    }
     <tbody>
+      <!-- <h1 *ngIf="nodata">No data found</h1> -->
+    
       <tr *ngFor="let property of properties">
         <td>
           <div id="propertyCarousel{{property._id}}" class="carousel slide">

@@ -18,6 +18,7 @@ declare var bootstrap: any;
 export class MypropertiesComponent implements OnInit {
   userid:any;
   properties: any[] = []; 
+  nodata:boolean=false;
   mypropertyservice=inject(MypropertiesService);
   router=inject(Router);
   ngOnInit(): void {
@@ -25,6 +26,7 @@ export class MypropertiesComponent implements OnInit {
     if (token) {
       const decodedToken: any = jwtDecode(token); 
       this.userid=decodedToken.user.id;
+      debugger;
       this.getallproperty();
 
     } else {
@@ -35,7 +37,11 @@ export class MypropertiesComponent implements OnInit {
     this.mypropertyservice.getmyproperties(this.userid).subscribe((res:any)=>{
       console.log(res)
       this.properties=res;
-    },err=>console.log(err))
+    },err=>{
+      if (err.status === 404) {
+        this.nodata = true;
+      }
+    })
   }
 
   editProperty(id:any){}

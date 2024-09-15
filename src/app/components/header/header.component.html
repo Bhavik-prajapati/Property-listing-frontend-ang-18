@@ -7,51 +7,54 @@
         </h5>
     </div>
     <ul class="navlinks mt-3">
-            <!-- <button  class="btn btn-light mt-2">
-                <li class="text-danger">
-                    <a href="/signup">Login/Signup</a>
-                </li>
-            </button> -->
-         
+        @if (islogin) {
+            <li>
+                <a href="/home" class="text-white">Home</a>
+            </li>
             <!-- <li>
-                <a href="/allproperties" class="text-white">All  Properties</a>
+                <a href="/myproperties" class="text-white">My Properties</a>
             </li> -->
             <!-- <li>
                 <a href="/postproperty" class="text-white">Post Property</a>
             </li> -->
-           
+            <li>
+                <!-- <a href="/plans" class="text-white">Plans</a> -->
+            </li>
 
-                @if (islogin) {
+            <!-- Profile Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Profile
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <li>
-                        <a href="/home" class="text-white">Home</a>
+                        <a class="dropdown-item" href="/profile">My Profile</a>
                     </li>
                     <li>
-                        <a href="/myproperties" class="text-white">myproperties</a>
+                        <a class="dropdown-item" href="/myproperties">My Properties</a>
                     </li>
                     <li>
-                        <a href="/postproperty" class="text-white">postproperty</a>
+                        <a class="dropdown-item" href="/postproperty">Post Property</a>
                     </li>
-                    <li>
-                        <a href="/plans" class="text-white">plans</a>
-                    </li>
-                    <li>
-                        <span (click)="logout()" class="text-white" style="cursor: pointer;">
-                            Logout
-                        </span>
-                    </li>
-                }
-                @if (!islogin) {
-                    <li>
-                        <a href="/plans" class="text-white">plans</a>
-                    </li>
-                    <li>
-                        <a href="/login">Login</a>
-                    </li>
-                    <li>
-                        <a href="/signup">Signup</a>
-                    </li>
-                }
-            
-        <!-- <li class="text-danger">About</li> -->
+                </ul>
+            </li>
+
+            <li>
+                <span (click)="logout()" class="text-white" style="cursor: pointer;">
+                    Logout
+                </span>
+            </li>
+        }
+        @if (!islogin) {
+            <li>
+                <a href="/plans" class="text-white">Plans</a>
+            </li>
+            <li>
+                <a href="/login">Login</a>
+            </li>
+            <li>
+                <a href="/signup">Signup</a>
+            </li>
+        }
     </ul>
 </header>

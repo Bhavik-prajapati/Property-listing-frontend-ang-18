@@ -2,17 +2,22 @@ import { Component, inject, Inject } from '@angular/core';
 import { HeaderComponent } from "../../components/header/header.component";
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-plans',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent,CommonModule],
   templateUrl: './plans.component.html',
   styleUrl: './plans.component.css'
 })
 export class PlansComponent {
   isplan:string='';
   http=inject(HttpClient);
+  
+  goBack() {
+    window.history.back(); 
+  }
   
   constructor(){
     this.http.get("http://localhost:5000/users/checkplan").subscribe((res:any)=>{
