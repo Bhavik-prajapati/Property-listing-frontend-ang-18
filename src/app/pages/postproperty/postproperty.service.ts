@@ -18,7 +18,6 @@ export class PostpropertyService {
 
   updatepropertybyid(id:any,formData:any)
   {   
-    debugger;
-    return this.http.patch(`http://localhost:5000/properties/${id}`,{formData},{});
+    return this.http.patch(`http://localhost:5000/users/${id}`,{formData},{});
   }
 }

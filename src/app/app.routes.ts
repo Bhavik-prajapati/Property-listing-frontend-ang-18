@@ -11,6 +11,7 @@ import { authGuard } from './components/authguard/auth.guard';
 import { PaymentGatewayComponent } from './pages/payment-gateway/payment-gateway.component';
 import { MypropertiesComponent } from './pages/myproperties/myproperties.component';
 import { PlansComponent } from './pages/plans/plans.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 export const routes: Routes = [
     {
@@ -35,6 +36,7 @@ export const routes: Routes = [
         component: LayoutComponent,
         children: [
             { path: "home", component: HomeComponent, canActivate: [authGuard] },
+            { path: "profile", component: ProfileComponent, canActivate: [authGuard] },
             { path: "about", component: AboutComponent, canActivate: [authGuard] },
             { path: "property/:id", component: PropertyDetailComponent, canActivate: [authGuard] },
             { path: "postproperty", component: PostpropertyComponent, canActivate: [authGuard] },

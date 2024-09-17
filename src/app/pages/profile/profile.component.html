@@ -1,0 +1,101 @@
+<app-header></app-header>
+<div class="container">
+
+  <h1 class="text-center">Update Profile</h1>
+<form class="form-group">
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input
+      type="text"
+      class="form-control"
+      id="name"
+      [(ngModel)]="userdata.name"
+      name="name"
+      [disabled]="isDisabled"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      [(ngModel)]="userdata.email"
+      name="email"
+              [disabled]="isDisabled"
+
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="phone" class="form-label">Phone</label>
+    <input
+      type="tel"
+      class="form-control"
+      id="phone"
+      [(ngModel)]="userdata.phone"
+      name="phone"
+              [disabled]="isDisabled"
+
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="userType" class="form-label">User Type</label>
+    <input
+      type="text"
+      class="form-control"
+      id="userType"
+      [(ngModel)]="userdata.userType"
+      name="userType"
+      disabled="disabled"
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="planType" class="form-label">Plan Type</label>
+    <input
+      type="text"
+      class="form-control"
+      id="planType"
+      [(ngModel)]="userdata.planType"
+      name="planType"
+      disabled="disabled"
+
+
+    />
+  </div>
+
+  <div class="mb-3">
+    <label for="propertyLimit" class="form-label">Property Limit</label>
+    <input
+      type="number"
+      class="form-control"
+      id="propertyLimit"
+      [(ngModel)]="userdata.propertyLimit"
+      name="propertyLimit"
+      disabled="disabled"
+    />
+  </div>
+
+  <!-- Uncomment this section if needed -->
+  <!-- <div class="mb-3">
+    <label for="propertiesListed" class="form-label">Properties Listed</label>
+    <input
+      type="number"
+      class="form-control"
+      id="propertiesListed"
+      [(ngModel)]="userdata.propertiesListed"
+      name="propertiesListed"
+      disabled
+    />
+  </div> -->
+
+  <button type="button" class="btn btn-danger" (click)="onSubmit()">
+    {{ isDisabled ? 'Edit' : 'Update' }} Profile
+  </button>
+  
+</form>
+
+</div>
