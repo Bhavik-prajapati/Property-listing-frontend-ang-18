@@ -12,6 +12,8 @@
       [(ngModel)]="userdata.name"
       name="name"
       [disabled]="isDisabled"
+      required
+
     />
   </div>
 
@@ -24,6 +26,8 @@
       [(ngModel)]="userdata.email"
       name="email"
               [disabled]="isDisabled"
+      required
+
 
     />
   </div>
@@ -36,8 +40,10 @@
       id="phone"
       [(ngModel)]="userdata.phone"
       name="phone"
-              [disabled]="isDisabled"
-
+      [disabled]="isDisabled"
+      pattern="[0-9]{10}"
+      title="Phone number must be 10 digits"
+      required
     />
   </div>
 
@@ -50,6 +56,8 @@
       [(ngModel)]="userdata.userType"
       name="userType"
       disabled="disabled"
+      required
+
     />
   </div>
 
@@ -62,6 +70,7 @@
       [(ngModel)]="userdata.planType"
       name="planType"
       disabled="disabled"
+      required
 
 
     />
@@ -76,6 +85,8 @@
       [(ngModel)]="userdata.propertyLimit"
       name="propertyLimit"
       disabled="disabled"
+      required
+
     />
   </div>
 

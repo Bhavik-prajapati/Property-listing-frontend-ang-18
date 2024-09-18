@@ -1,5 +1,5 @@
 import { Component, Inject, inject, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyDetailService } from './property-detail.service';
 import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +7,8 @@ import { PaymentService } from '../payment-gateway/payment.service';
 import Swal from 'sweetalert2';
 import { jwtDecode } from 'jwt-decode';
 import { ProfileService } from '../profile/profile.service';
+// import html2canvas from 'html2canvas';
+import { saveAs } from 'file-saver';
 
 declare var bootstrap: any;
 declare var Razorpay: any;
@@ -20,8 +22,11 @@ declare var Razorpay: any;
 })
 export class PropertyDetailComponent implements OnInit{
 
+  router=inject(Router);
+
   goBack() {
     window.history.back(); 
+    this.router.navigateByUrl("home") ;
   }
 
   http=inject(HttpClient);
@@ -67,29 +72,47 @@ export class PropertyDetailComponent implements OnInit{
       carousel.next();
     }
   }
-   
-  viewphone()
-  {
+viewphone(mobile: string) {
 
-    alert(this.propertylimit)
-    this.propertylimit-=1;
+  if(this.propertylimit<0){
+    this.router.navigateByUrl("plans");
+  }else{
 
-
-// 
-    // this.profileservice.getprofiledata()
-
-    // this.profileservice.updateprofiledata().subscribe((res)=>{
-
-    this.profileservice.updateprofiledata({propertyLimit:this.propertylimit}).subscribe((res)=>console.log(res),err=>console.log(err))
-
-
-
-
-
-      // console.log(res)
-    // },err=>console.log(err))
-
-
-
+    
+    Swal.fire({
+      title: `${mobile} downloadbutton`,
+      text: this.propertylimit + " Count Remains",
+      icon: 'info',
+      confirmButtonText: 'OK',
+      footer: `<span id="download-txt" style="cursor: pointer; color: blue;">This is a one-time popup. Kindly note the number, or Click to download.</span>`
+      
+    });
+    
+    this.propertylimit -= 1;
+    this.profileservice.updateprofiledata({ propertyLimit: this.propertylimit }).subscribe(
+      (res) => console.log(res),
+      (err) => console.log(err)
+    );
+    
+    setTimeout(() => {
+      const footerElement = document.getElementById('download-txt');
+      footerElement?.addEventListener('click', () => {
+        // Create the content of the text file
+        const textContent = `Mobile Number: ${mobile}`;
+        
+        // Convert the text into a Blob
+        const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
+        
+        // Use FileSaver.js to save the text file
+        saveAs(blob, 'mobile-number.txt');
+      });
+    }, 0);
+    
   }
+
+}
+
+  
+
+  
 }

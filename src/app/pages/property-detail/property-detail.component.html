@@ -37,8 +37,8 @@
       <p class="card-text">{{ property.description }}</p>
       <p class="card-text"><strong>Type:</strong> {{ property.propertyType }}</p>
       <p class="card-text"><strong>Price:</strong> {{ property.price | currency }}</p>
-      <p class="card-text"><strong>Location:</strong> Latitude: {{ property?.location?.coordinates[1] }}, Longitude: {{ property?.location?.coordinates[0] }}</p>
-      <button id="viewphone" class="btn btn-danger" (click)="viewphone()">View Phone No</button>
+      <!-- <p class="card-text"><strong>Location:</strong> Latitude: {{ property?.location?.coordinates[1] }}, Longitude: {{ property?.location?.coordinates[0] }}</p> -->
+      <button id="viewphone" class="btn btn-danger" (click)="viewphone(property.ownerPhone)">View Phone No</button>
       <!-- <div id="mobileno"></div> -->
 
       <p class="card-text"><small class="text-muted">Posted on {{ property.createdAt | date:'mediumDate' }}</small></p>

@@ -22,7 +22,7 @@ export class PlansComponent {
   constructor(){
     this.http.get("http://localhost:5000/users/checkplan").subscribe((res:any)=>{
       console.log(res.authcred.planType);
-      this.isplan = res.authcred.planType.toLowerCase();
+      // this.isplan = res.authcred.planType.toLowerCase();
     },err=>console.log(err))  
   }
 
