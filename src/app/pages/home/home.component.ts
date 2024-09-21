@@ -6,6 +6,7 @@ import { Property, PropertyCardComponent } from "../../components/property-card/
 import { HeaderComponent } from "../../components/header/header.component";
 import { FormsModule } from '@angular/forms';
 import { HttpResponse } from '@angular/common/http';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home',
@@ -30,22 +31,44 @@ export class HomeComponent {
       this.router.navigateByUrl("login");
     }
     this.getalldata();
+
     homeservice.checkplan().subscribe((res)=>{console.log(res)},err=>console.log(err))
   }
 
-  getalldata(){
-    this.homeservice.getallproperties().subscribe((res: HttpResponse<any>)=>{
-      console.log(res.status)
-      if(res.status==401){
-        this.router.navigateByUrl("/login");
+  getalldata() {
+    // Show the loading alert
+    const loading = Swal.fire({
+      title: 'Loading...',
+      html: 'Please wait while we fetch the data.',
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
       }
-      this.properieslist = res.body;
-      this.filteredProperties = this.properieslist;
-    },error=>{
-      console.log(error)
-    })
-
+    });
+  
+    this.homeservice.getallproperties().subscribe(
+      (res: HttpResponse<any>) => {
+        Swal.close();
+  
+        console.log(res.status);
+        if (res.status == 401) {
+          this.router.navigateByUrl("/login");
+        }
+        this.properieslist = res.body;
+        this.filteredProperties = this.properieslist;
+      },
+      error => {
+        Swal.close();
+        console.log(error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong while fetching data!',
+        });
+      }
+    );
   }
+  
 
   onSearch() {
     if (this.searchTerm.trim() !== '') {

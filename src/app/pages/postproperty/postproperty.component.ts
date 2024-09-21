@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule, N
 import { PostpropertyService } from './postproperty.service';
 import { CommonModule, JsonPipe } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
+import { zip } from 'rxjs';
 
 @Component({
   selector: 'app-postproperty',
@@ -21,14 +22,23 @@ export class PostpropertyComponent implements OnInit {
     latitude: '',
     longitude: '',
     ownerPhone:'',
-    propertyType: ''
+    propertyType: '',
+    bedrooms:'',
+    hall:'',
+    kitchens:'',
+    bathrooms:'',
+    area:'',
+    country:'',
+    state:'',
+    city:'',
+    zip:''
   };
   selectedFiles: File[] = [];
   router: Router;
   existingimages: any=[];
-
   constructor(private postproperty: PostpropertyService, router: Router,private route: ActivatedRoute) {
     this.router = router;
+    
   }
 
   ngOnInit(): void {
@@ -38,16 +48,17 @@ export class PostpropertyComponent implements OnInit {
       const id = queryParams['id'];
       console.log('ID from query params:', id);
 
-
       this.postproperty.getpropertybyid(id).subscribe((res:any)=>{
         console.log(res)
         this.property=res;
         this.property.latitude=res.location.coordinates[0];
         this.property.longitude=res.location.coordinates[1];
         this.existingimages=res.images || [];
-        console.log(this.existingimages,"++++++++++++++")
+        this.property.country=res.address.country,
+        this.property.city=res.address.city
+        this.property.state=res.address.state
+        this.property.zip=res.address.zip
       },err=>console.log(err))
-
     });
   }
 
@@ -68,7 +79,16 @@ export class PostpropertyComponent implements OnInit {
       formData.append('longitude', this.property.longitude);
       formData.append('ownerPhone', this.property.ownerPhone);
       formData.append('propertyType', this.property.propertyType);
-      
+      formData.append('bedrooms', this.property.bedrooms);
+      formData.append('hall', this.property.hall);
+      formData.append('kitchens', this.property.kitchens);
+      formData.append('bathrooms', this.property.bathrooms);
+      formData.append('area', this.property.area);
+      formData.append('country', this.property.country);
+      formData.append('state', this.property.state);
+      formData.append('city', this.property.city);
+      formData.append('zip', this.property.zip);
+
       this.selectedFiles.forEach((file, index) => {
         formData.append(`images`, file, file.name);
       });

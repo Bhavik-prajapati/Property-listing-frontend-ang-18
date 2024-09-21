@@ -3,6 +3,7 @@ import { HeaderComponent } from "../../components/header/header.component";
 import Swal from 'sweetalert2';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-plans',
@@ -14,9 +15,11 @@ import { CommonModule } from '@angular/common';
 export class PlansComponent {
   isplan:string='';
   http=inject(HttpClient);
+  router=inject(Router);
   
   goBack() {
-    window.history.back(); 
+    // window.history.back(); 
+    this.router.navigateByUrl("home");
   }
   
   constructor(){

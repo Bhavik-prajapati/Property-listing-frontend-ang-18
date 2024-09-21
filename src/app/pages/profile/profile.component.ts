@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
     const decodedToken: any = jwtDecode(token);
     this.decodedToken=decodedToken.user.id;
 
+    // console.log(decodedToken.user.id)
     // Fetch the profile data using the decoded token
     this.profileService.getprofiledata(decodedToken.user.id).subscribe(
       (res:any) => {

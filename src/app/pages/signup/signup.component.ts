@@ -28,7 +28,6 @@ export class SignupComponent {
     const token=localStorage.getItem("token");
     if(token)
     {
-      debugger;
       this.router.navigateByUrl("home");
     }
   }

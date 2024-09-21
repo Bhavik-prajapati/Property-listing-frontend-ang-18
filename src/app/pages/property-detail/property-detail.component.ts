@@ -2,7 +2,7 @@ import { Component, Inject, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PropertyDetailService } from './property-detail.service';
 import { CommonModule, DatePipe } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { PaymentService } from '../payment-gateway/payment.service';
 import Swal from 'sweetalert2';
 import { jwtDecode } from 'jwt-decode';
@@ -41,10 +41,23 @@ export class PropertyDetailComponent implements OnInit{
   property:any={};
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
+    Swal.fire({
+      title: 'Loading...',
+      didOpen: () => {
+        Swal.showLoading();
+      }
+    });
     this.propertyservice.getpropertybyid(id).subscribe((res:any)=>{
       this.property=res;
+      Swal.close();
     },error=>{
       console.log(error)
+      Swal.close();
+      Swal.fire({
+        title: 'Error!',
+        text: 'Could not load property data.',
+        icon: 'error'
+      });
     })
 
     this.profileservice.getprofiledata(this.decodedtoken.user.id).subscribe(
@@ -72,47 +85,19 @@ export class PropertyDetailComponent implements OnInit{
       carousel.next();
     }
   }
-viewphone(mobile: string) {
-
-  if(this.propertylimit<0){
-    this.router.navigateByUrl("plans");
-  }else{
-
-    
-    Swal.fire({
-      title: `${mobile} downloadbutton`,
-      text: this.propertylimit + " Count Remains",
-      icon: 'info',
-      confirmButtonText: 'OK',
-      footer: `<span id="download-txt" style="cursor: pointer; color: blue;">This is a one-time popup. Kindly note the number, or Click to download.</span>`
-      
-    });
-    
-    this.propertylimit -= 1;
-    this.profileservice.updateprofiledata({ propertyLimit: this.propertylimit }).subscribe(
-      (res) => console.log(res),
-      (err) => console.log(err)
+  viewphone(mobile: string, propertyid: string) {
+    this.propertyservice.addPropertyVisited(propertyid).subscribe(
+      (res: any) => {
+        Swal.fire({
+          title: `Note Number: ${mobile}`
+        });
+      },
+      (err: HttpErrorResponse) => {
+        if (err.status===400) { 
+          this.router.navigateByUrl('plans');
+        }
+      }
     );
-    
-    setTimeout(() => {
-      const footerElement = document.getElementById('download-txt');
-      footerElement?.addEventListener('click', () => {
-        // Create the content of the text file
-        const textContent = `Mobile Number: ${mobile}`;
-        
-        // Convert the text into a Blob
-        const blob = new Blob([textContent], { type: 'text/plain;charset=utf-8' });
-        
-        // Use FileSaver.js to save the text file
-        saveAs(blob, 'mobile-number.txt');
-      });
-    }, 0);
-    
   }
 
-}
-
-  
-
-  
 }

@@ -26,7 +26,6 @@ export class MypropertiesComponent implements OnInit {
     if (token) {
       const decodedToken: any = jwtDecode(token); 
       this.userid=decodedToken.user.id;
-      debugger;
       this.getallproperty();
 
     } else {
