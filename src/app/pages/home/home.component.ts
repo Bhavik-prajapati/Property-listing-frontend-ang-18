@@ -71,14 +71,27 @@ export class HomeComponent {
   
 
   onSearch() {
-    if (this.searchTerm.trim() !== '') {
-      this.filteredProperties = this.properieslist.filter((propert: Property) =>
-        propert.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-        propert.description.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-    } else {
-      this.filteredProperties = this.properieslist;
+    
+    console.log(this.propertyType,"-",this.city,"-",this.searchTerm);
+
+    this.homeservice.searchProperties(this.propertyType,this.city,this.searchTerm).subscribe((res:any)=>
+    {
+      this.filteredProperties = res;
     }
+    ,err=>{
+
+      this.filteredProperties=this.properieslist;
+
+    })
+
+    // if (this.searchTerm.trim() !== '') {
+    //   this.filteredProperties = this.properieslist.filter((propert: Property) =>
+    //     propert.title.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
+    //     propert.description.toLowerCase().includes(this.searchTerm.toLowerCase())
+    //   );
+    // } else {
+    //   this.filteredProperties = this.properieslist;
+    // }
   }
 
 

@@ -30,7 +30,6 @@
       <option value="Villa">Villa</option>
     </select>
     
-    <!-- City Dropdown -->
     <select 
       name="city" 
       [(ngModel)]="city"
@@ -38,20 +37,17 @@
       style="border: 1px solid black; box-shadow: none; outline: none; width: 20%;"
       aria-label="Select City">
       <option value="" disabled selected>Select City</option>
-      <option value="new-york">New York</option>
-      <option value="los-angeles">Los Angeles</option>
-      <option value="chicago">Chicago</option>
-      <!-- Add more cities as needed -->
+      <option value="Ahmedabad">Ahmedabad</option>
+      <option value="Himatnagar">Himatnagar</option>
     </select>
     
-    <!-- Search Input -->
     <input 
       type="text" 
       name="search" 
       style="border: 1px solid black; box-shadow: none; outline: none; width: 40%;"
       [(ngModel)]="searchTerm" 
       class="form-control p-4" 
-      placeholder="Search Property" 
+      placeholder="Type Area" 
       aria-label="Search Property" 
       aria-describedby="button-search">
     

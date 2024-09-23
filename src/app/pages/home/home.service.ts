@@ -23,4 +23,9 @@ import { Observable, retryWhen } from 'rxjs';
       })
     }
     
+    searchProperties(propertyType: string, city: string, searchTerm: string) {
+      const params = { propertyType, city, searchTerm };
+      return this.http.get(`http://localhost:5000/properties/search`, { params });
+    }
+
   }
